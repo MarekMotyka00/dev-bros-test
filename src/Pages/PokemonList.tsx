@@ -5,17 +5,17 @@ function PokemonList() {
   const [search, setSearch] = useState('');
   const searchInputRef = useRef<HTMLInputElement>(null);
   return (
-    <section className='bg-blue-300 h-screen pt-10'>
+    <section className='bg-blue-300  pt-10'>
       <div className='layout'>
         <form action='' className='flex justify-center mb-10'>
           <input
             ref={searchInputRef}
             type='text'
-            className='outline-none w-[300px] py-2 px-6'
+            className='outline-none max-w-[600px] w-full py-4 px-6 rounded-lg'
             name='search'
             id='search'
             onChange={(e) => setSearch(e.target.value)}
-            placeholder='search'
+            placeholder='Zadejte jméno Pokémona'
           />
         </form>
         <div className='flex flex-col justify-between mb-4 items-start md:flex-row'>
@@ -32,8 +32,8 @@ function PokemonList() {
             Smazat filtry
           </button>
         </div>
-        <PokemonListComponent search={search}></PokemonListComponent>
       </div>
+      <PokemonListComponent search={search}></PokemonListComponent>
     </section>
   );
 }

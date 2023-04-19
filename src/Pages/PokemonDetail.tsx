@@ -58,7 +58,7 @@ function PokemonDetail() {
         </nav>
         <div className='flex flex-col gap-8 items-center bg-white rounded-lg p-8 max-w-5xl mx-auto sm:flex-row'>
           <div className='flex flex-col rounded-lg p-10 border'>
-            <h1 className='text-[#FF3E4E] mb-10 text-2xl text-center'>{data.pokemon_v2_pokemon[0].name}</h1>
+            <h1 className='text-[#FF3E4E] mb-10 text-2xl text-center capitalize'>{data.pokemon_v2_pokemon[0].name}</h1>
             <img src={`${baseImgUrl + data.pokemon_v2_pokemon[0].id.toString().padStart(3, '0')}.png`} alt='' />
           </div>
           {activeTab === 'profile' && (
@@ -90,7 +90,7 @@ function PokemonDetail() {
           {activeTab === 'stats' && (
             <div className='flex flex-col gap-y-4 w-full'>
               {data.pokemon_v2_pokemon[0].pokemon_v2_pokemonstats.map((stat: any) => (
-                <div className='flex flex-col items-start gap-2 w-full justify-between md:flex-row md:items-center md:gap-10 md:max-w-md'>
+                <div className='flex flex-col items-start gap-2 w-full justify-between md:flex-row md:items-center md:gap-10 md:max-w-lg'>
                   <span className='font-bold text-2xl'>{stat.pokemon_v2_stat.name}</span>
                   <ProgressBar progressPercentage={stat.base_stat}></ProgressBar>
                 </div>
