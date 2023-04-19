@@ -32,9 +32,8 @@ function PokemonDetail() {
     }
   `;
   const [activeTab, setActiveTab] = useState('profile');
-  const { data, loading, error } = useQuery(POKEMON_DETAIL_QUERY);
+  const { data, loading } = useQuery(POKEMON_DETAIL_QUERY);
   if (loading) return <div>Loading...</div>;
-  console.log(data);
   const baseImgUrl = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/';
   return (
     <section className='bg-blue-300 h-screen pt-10'>

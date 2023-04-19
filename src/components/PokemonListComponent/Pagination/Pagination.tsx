@@ -1,4 +1,5 @@
 import { gql, useQuery } from '@apollo/client';
+import { Link } from 'react-router-dom';
 
 type PaginationProps = { currentPage: number; search: string; pokemonsToShow: number; setPage: Function };
 
@@ -19,28 +20,28 @@ export default function Pagination(props: PaginationProps) {
       }
     }
   `;
-  const { data, loading, error } = useQuery(POKEMONS_FULL_LIST_QUERY);
+  const { data, loading } = useQuery(POKEMONS_FULL_LIST_QUERY);
   if (loading) return <div>Loading...</div>;
   const maxPage = Math.ceil(data.pokemon_v2_pokemon.length / pokemonsToShow);
   let paginationNumbers = [];
   if (maxPage <= 3) {
-    console.log('first');
     for (let i = 1; i < maxPage - 1; i++) {
       paginationNumbers[i] = i + 1;
     }
   } else if (currentPage < maxPage - 3 && currentPage >= 3) {
-    console.log('second');
     for (let i = currentPage - 2; i < currentPage + 1; i++) {
       paginationNumbers[i] = i + 1;
     }
+  } else if (currentPage === maxPage - 1) {
+    for (let i = currentPage - 1; i < currentPage + 1; i++) {
+      paginationNumbers[i] = i;
+    }
   } else if (currentPage > maxPage - 4 && currentPage <= maxPage - 1) {
-    console.log('third');
     for (let i = currentPage - 2; i < currentPage + 1; i++) {
       paginationNumbers[i] = i + 1;
     }
   } else {
     if (currentPage >= maxPage - 1) {
-      console.log('before last');
       for (let i = maxPage - 3; i < maxPage - 1; i++) {
         paginationNumbers[i] = i + 1;
       }
@@ -49,7 +50,6 @@ export default function Pagination(props: PaginationProps) {
         paginationNumbers[i] = i;
       }
     } else {
-      console.log('last');
       for (let i = currentPage; i < currentPage + 2; i++) {
         paginationNumbers[i] = i + 1;
       }
@@ -89,6 +89,13 @@ export default function Pagination(props: PaginationProps) {
       </div>
     );
   } else {
-    return null;
+    return (
+      <div className='flex flex-col justify-center items-center text-center py-4'>
+        <span className='text-[#1D1D1D]  border border-[#A5A5A5] py-2 px-8 rounded-lg mb-4'>Všechny položky zobrazeny</span>
+        <Link className='text-[#FF3E4E] underline' to='/'>
+          Zpět na přehled Pokémonů
+        </Link>
+      </div>
+    );
   }
 }

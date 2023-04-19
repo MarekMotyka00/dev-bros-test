@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import PokemonListItem from '../PokemonListItem/PokemonListItem';
 import { gql, useQuery } from '@apollo/client';
 import Pagination from './Pagination/Pagination';
@@ -32,7 +32,7 @@ export default function PokemonListComponent(props: any) {
   }
 `;
 
-  const { data, loading, error } = useQuery(POKEMONS_QUERY);
+  const { data, loading } = useQuery(POKEMONS_QUERY);
   if (loading) return <div>Loading...</div>;
   return (
     <>
@@ -41,10 +41,10 @@ export default function PokemonListComponent(props: any) {
           <PokemonListItem name={item.name} key={item.id} pokemonId={item.id} />
         ))}
       </div>
-      <div className='bg-[#8FFF83] h-20'>
+      <div className='bg-[#8FFF83] h-28'>
         <Pagination currentPage={page} search={search} pokemonsToShow={pokemonsToShow} setPage={setPage}></Pagination>
       </div>
-      <div className='bg-[#6AC663] h-20'></div>
+      <div className='bg-[#6AC663] h-28'></div>
     </>
   );
 }
