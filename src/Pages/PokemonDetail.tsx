@@ -36,7 +36,7 @@ function PokemonDetail() {
   if (loading) return <div>Loading...</div>;
   const baseImgUrl = 'https://assets.pokemon.com/assets/cms2/img/pokedex/detail/';
   return (
-    <section className='bg-blue-300 h-screen pt-10'>
+    <section className='bg-blue-300 min-h-screen py-10'>
       <div className='layout'>
         <Link className='mb-4 block' to='/'>
           Zpět na přehled
