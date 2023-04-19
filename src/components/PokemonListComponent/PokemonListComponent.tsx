@@ -8,11 +8,10 @@ type PokemonItem = {
   name: string;
 };
 
-export default function PokemonListComponent(props: any) {
+export default function PokemonListComponent(props: { search: string }) {
   const { search } = props;
   const pokemonsToShow = 12;
   const [page, setPage] = useState(1);
-  // TODO debounce
 
   // get paged list of pokemons with the ability to search
   const POKEMONS_QUERY = gql`

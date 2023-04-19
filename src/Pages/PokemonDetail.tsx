@@ -79,7 +79,7 @@ function PokemonDetail() {
               <div className='flex flex-col'>
                 <span className='p-2 rounded-lg bg-[#FF3E4E1A] text-center font-bold mb-2'>Dovednosti</span>
                 <ul>
-                  {data.pokemon_v2_pokemon[0].pokemon_v2_pokemonabilities.map((ability: any) => (
+                  {data.pokemon_v2_pokemon[0].pokemon_v2_pokemonabilities.map((ability: { pokemon_v2_ability: { name: string } }) => (
                     <li>{ability.pokemon_v2_ability.name}</li>
                   ))}
                 </ul>
@@ -88,7 +88,7 @@ function PokemonDetail() {
           )}
           {activeTab === 'stats' && (
             <div className='flex flex-col gap-y-4 w-full'>
-              {data.pokemon_v2_pokemon[0].pokemon_v2_pokemonstats.map((stat: any) => (
+              {data.pokemon_v2_pokemon[0].pokemon_v2_pokemonstats.map((stat: { base_stat: number; pokemon_v2_stat: { name: string } }) => (
                 <div className='flex flex-col items-start gap-2 w-full justify-between md:flex-row md:items-center md:gap-10 md:max-w-lg'>
                   <span className='font-bold text-2xl'>{stat.pokemon_v2_stat.name}</span>
                   <ProgressBar progressPercentage={stat.base_stat}></ProgressBar>
